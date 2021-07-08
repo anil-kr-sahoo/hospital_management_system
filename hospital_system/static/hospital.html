@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+                <div class="card-text">
+                    <!--
+                <div class="alert alert-danger alert-dismissible fade show" 
+                 role="alert">Incorrect username or password.</div> -->
+                 <div class="centre-body">
+                 <div class="card text-center">
+                    <div class="card-header">
+                      HOSPITAL ADMIN PANEL
+                    </div>
+                    <div class="card-body">
+                   
+                      <a href="{% url 'hospital_signup_form' %}" class="btn btn-primary">
+                          <i class="bi bi-plus-circle"></i>
+                          &nbsp; ADD HOSPITAL</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        HOSPITAL LISTS
+                    </div>
+                  </div>
+                    <div class="row hospital_list">
+                        {% for data in hospitals %}
+                          <div class="col-sm-4">
+                              <div class="card">
+                                  <div class="list-card card-body">
+                                      <h5 class="card-title">{{data.name}}</h5>
+                                      <p class="card-text">{{data.address}}</p>
+                                      <a href="{% url 'login_page' %}" class="btn btn-primary">LOGIN</a>
+                                  </div>
+                              </div>
+                          </div>
+                      {% endfor %}
+                    </div>
+
+                </div>
+
+{% endblock %}

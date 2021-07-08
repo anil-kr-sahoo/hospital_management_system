@@ -1,0 +1,70 @@
+html, body {
+    height: auto;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    }
+    h2{
+        text-align: center;
+    }
+    .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .global-container {
+        /* height: 100%; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgb(238,174,202);
+         background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    }
+     
+    form {
+        padding-top: 10px;
+        font-size: 14px;
+        margin-top: 30px;
+    }
+     
+    .centre-body {
+        padding-top: 10px;
+        font-size: 14px;
+        margin-top: 30px;
+    }
+     
+    .card-title {
+        background: rgb(238, 174, 202);
+        font-weight: 300;
+    }
+    .list-card{
+        height: 170px;
+    }
+    .btn {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+     
+    .login-form {
+        width: 80%;
+        margin: 20px;
+    }
+     
+    .sign-up {
+        text-align: center;
+        padding: 20px 0 0;
+    }
+     
+    .alert {
+        margin-bottom: -30px;
+        font-size: 13px;
+        margin-top: 20px;
+    }
+    .hospital_list {
+        margin: 2%;
+        padding: 10px;
+    }
+    .card {
+        padding: 2px;
+        margin: 10px;
+    }

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+                <div class="card-text">
+                    <!--
+                <div class="alert alert-danger alert-dismissible fade show" 
+                 role="alert">Incorrect username or password.</div> -->
+                 <div class="centre-body">
+                     {% if hospital_type %}
+                     <h2>Welcome, {{ hospital_name }}</h2>
+                     <h4>Doctor List</h4>
+                     {% elif doctor_type %}
+                     <h2>Welcome, Dr {{ doctor_name }}</h2>
+                     <h4>Prescribed Patient List</h4>
+                     {% elif patient_type %}
+                     <h2>Welcome, {{ patient_name }}</h2>
+                     <h4>Visit Details</h4>
+                     {% endif %}
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                              {% if doctor_type %}
+                              <th scope="col">Name</th>
+                              <th scope="col">Blood Group</th>
+                              <th scope="col">Appointment Date</th>
+                              <th scope="col">Prescription</th>
+
+                              {% elif patient_type %}
+                              <th scope="col">Hospital</th>
+                              <th scope="col">Doctor</th>
+                              <th scope="col">Appointment Date</th>
+                              <th scope="col">Prescription</th>
+
+                              {% else %}
+                              <th scope="col">Name</th>
+                              <th scope="col">Gender</th>
+                              <th scope="col">Phone No</th>
+                              <th scope="col">Email Id </th>
+                              {% endif %}
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for doctor in doctors %}
+                          <tr>
+                            <th scope="row">{{ doctor.sl_no }}</th>
+                            <td>Dr. {{ doctor.full_name }}</td>
+                            <td>{{ doctor.gender }}</td>
+                            <td>{{ doctor.phone_no }}</td>
+                            <td>{{ doctor.email }}</td>
+                          </tr>
+                        {% endfor %}
+                        {% for patient in patients %}
+                          <tr>
+                            <th scope="row">{{ patient.sl_no }}</th>
+                            <td>{{ patient.full_name }}</td>
+                            <td>{{ patient.blood }}</td>
+                            <td>{{ patient.appointment }}</td>
+                            <td>{{ patient.prescription }}</td>
+                          </tr>
+                        {% endfor %}
+                        {% for visit in visits %}
+                          <tr>
+                            <th scope="row">{{ visit.sl_no }}</th>
+                            <td>{{ visit.hospital }}</td>
+                            <td>Dr. {{ visit.doctor }}</td>
+                            <td>{{ visit.appointment_date }}</td>
+                            <td>{{ visit.prescription }}</td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    {% if hospital_type %}
+                    <div class="card-body">
+                        <a href="{% url 'doctor_signup_form' %}" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i>
+                            ADD DOCTOR </a>
+                    </div>
+                     {% elif doctor_type %}
+                     <div class="card-body">
+                        <a href="{% url 'patient_signup_form' %}" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i>
+                            Prescribe Patient </a>
+                     </div>
+                     {% endif %}
+
+
+                    
+                </div>
+
+                </div>
+
+    {% endblock %}

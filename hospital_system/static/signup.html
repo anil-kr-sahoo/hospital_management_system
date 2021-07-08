@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card-text">
+    <!--
+<div class="alert alert-danger alert-dismissible fade show"
+ role="alert">Incorrect username or password.</div> -->
+    <form action="{% url 'account_signup' %}" method="post">
+        {% csrf_token %}
+        <!-- to error: add class "has-danger" -->
+        <div class="form-group">
+            <label for="first_name">{% if hospital_type %}Hospital Name * {% else %}First Name *{% endif %}</label>
+            <input name="first_name" type="text" class="form-control form-control-sm" aria-describedby="emailHelp"
+                   required>
+        </div>
+        {% if not hospital_type %}
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input name="last_name" type="text" class="form-control form-control-sm" aria-describedby="emailHelp">
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <input name="email" type="email" class="form-control form-control-sm" aria-describedby="emailHelp" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone_number">Phone Number *</label>
+            <input name="phone_number" type="text" maxlength="13" class="form-control form-control-sm"
+                   aria-describedby="emailHelp" required>
+        </div>
+
+        {% if hospital_type %}
+        <div class="form-group">
+            <label for="reg_number">Hospital Reg. No</label>
+            <input name="reg_number" type="text" class="form-control form-control-sm" aria-describedby="emailHelp">
+        </div>
+        {% endif %}
+
+        {% if not hospital_type %}
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" name="gender">
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+                <option value="3">Transgender</option>
+                <option value="4">Other</option>
+            </select>
+        </div>
+        {% endif %}
+
+        {% if patient_type %}
+        <div class="form-group">
+            <label for="blood_group">Blood Group</label>
+            <select class="form-control" name="blood_group">
+                <option value="1">A +</option>
+                <option value="2">A -</option>
+                <option value="3">B +</option>
+                <option value="4">B -</option>
+                <option value="5">O +</option>
+                <option value="6">O -</option>
+                <option value="7">AB +</option>
+                <option value="8">AB -</option>
+            </select>
+        </div>
+        {% endif %}
+
+        {% if hospital_type %}
+        <div class="form-group">
+            <label class="form-label" for="address">Address</label>
+            <textarea name="address" class="form-control" id="textAreaExample1" rows="4"></textarea>
+        </div>
+        {% endif %}
+
+        {% if hospital_type %}
+        <div class="form-group">
+            <label for="established_date">Establish Date</label>
+            <input name="established_date" type="date" class="form-control form-control-sm" placeholder="DD/MM/YYYY">
+        </div>
+        {% endif %}
+        {% if patient_type %}
+        <div class="form-group">
+            <label for="appointment_date">Appointment Date</label>
+            <input name="appointment_date" type="date" class="form-control form-control-sm" placeholder="DD/MM/YYYY"
+                   required>
+        </div>
+        {% endif %}
+
+        {% if patient_type %}
+        <div class="form-group">
+            <label class="form-label" for="prescription">Prescription</label>
+            <textarea name="prescription" class="form-control" id="textAreaExample1" rows="4"></textarea>
+        </div>
+        {% endif %}
+
+        {% if not patient_type %}
+        <div class="form-group">
+            <label class="form-label" for="details">Details </label>
+            <textarea name="details" class="form-control" id="textAreaExample1" rows="4"></textarea>
+        </div>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="password">Password *</label>
+            <input name="password" type="password" class="form-control form-control-sm" id="exampleInputPassword1"
+                   required>
+        </div>
+
+
+        <div class="form-group">
+            <label for="c_password">Confirm Password *</label>
+            <input name="c_password" type="password" class="form-control form-control-sm" id="exampleInputPassword1"
+                   required>
+        </div>
+
+        <textarea name="role"
+                  hidden>{% if hospital_type %}1{% elif doctor_type %}2{% elif patient_type %}3{% endif %}</textarea>
+        <textarea name="logged_email"
+                  hidden>{% if doctor_type or patient_type %}{{ logged_email }}{% endif %}</textarea>
+        <button type="submit" class="btn btn-primary btn-block">
+            {% if hospital_type %}
+            Hospital SignUp
+            {% elif doctor_type %}
+            Doctor SignUp
+            {% elif patient_type %}
+            Patient SignUp
+            {% else %}
+            SignUp
+            {% endif %}
+        </button>
+
+        {% if hospital_type %}
+        <div class="sign-up">
+            Already have an account?
+            <a href="{% url 'login_page' %}">LogIn Here</a>
+        </div>
+        {% endif %}
+    </form>
+</div>
+
+<script type="text/javascript">
+        {% if status %}
+        alert("{{message}}");
+        {% if home %}
+        window.location.href = "{% url 'home_page' %}";
+        {% else %}
+        window.location.href = "{% url 'account_login' %}";
+        {% endif %}
+        {% endif %}
+
+
+</script>
+{% endblock %}
