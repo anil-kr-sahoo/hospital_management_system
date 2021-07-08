@@ -29,3 +29,13 @@ Simulate a platform to be used by hospitals for managing doctors and patients.
        - python manage.py shell
        - from apps.patient.helpers import create_patient_visits
        - create_patient_visits()
+       
+* Extra Features
+  - Home page created for Different User (Hospital, Doctor, Patient).
+  - Anyone can see the Hospital list registered with the system.
+  - Admin panel integrated, where a super user can create, delete and edit the existing data for all hospital, doctor and patient.
+  - In Admin pannel superuser have the search functionality by email, name or phone number of the corresponding users table.
+  - Appointment date is one of primary things for a doctor - patient interlink, which is missing in requirement.
+  - After a patient login through Appointment date they request a doctor appointment. (Future Aspects)
+  - Other Essential fields visualised in Table which not mentioned in requirement. (Appointment Date, Blood Group, Contact Details) 
+  - Check added that a patient can't have multiple entry on same day, if doctor and appointment date is there in table.
